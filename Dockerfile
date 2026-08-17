@@ -9,9 +9,8 @@ RUN git clone --depth 1 --single-branch --branch 1.3.1 https://github.com/Braini
 RUN mv /usr/local/bin/yt-dlp /usr/local/bin/yt-dlp-real \
     && printf '%s\n' \
       '#!/bin/sh' \
-      'COMMON="--extractor-args youtube:player_client=mweb --extractor-args youtubepot-bgutilscript:server_home=/opt/bgutil/server"' \
-      'if [ -f /etc/secrets/youtube-cookies.txt ]; then' \
-      '  exec /usr/local/bin/yt-dlp-real --cookies /etc/secrets/youtube-cookies.txt --extractor-args "youtube:player_client=mweb" --extractor-args "youtubepot-bgutilscript:server_home=/opt/bgutil/server" "$@"' \
+      'if [ -f /tmp/youtube-cookies.txt ]; then' \
+      '  exec /usr/local/bin/yt-dlp-real --cookies /tmp/youtube-cookies.txt --extractor-args "youtube:player_client=mweb" --extractor-args "youtubepot-bgutilscript:server_home=/opt/bgutil/server" "$@"' \
       'else' \
       '  exec /usr/local/bin/yt-dlp-real --extractor-args "youtube:player_client=mweb" --extractor-args "youtubepot-bgutilscript:server_home=/opt/bgutil/server" "$@"' \
       'fi' \
