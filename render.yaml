@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: thailam-youtube-downloader
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: API_KEY
+        sync: false
+      - key: DOWNLOAD_SECRET
+        generateValue: true
+      - key: DATA_DIR
+        value: /tmp/thailam-downloader
+      - key: MAX_CONCURRENT_JOBS
+        value: "1"
+      - key: MAX_QUEUED_JOBS
+        value: "6"
+      - key: JOB_TTL_SECONDS
+        value: "1800"
+      - key: SIGNED_URL_TTL_SECONDS
+        value: "900"
+      - key: MAX_FILE_BYTES
+        value: "2147483648"
