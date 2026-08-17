@@ -10,7 +10,7 @@ RUN mv /usr/local/bin/yt-dlp /usr/local/bin/yt-dlp-real \
     && printf '%s\n' \
       '#!/bin/sh' \
       'if [ -f /tmp/youtube-cookies.txt ]; then' \
-      '  exec /usr/local/bin/yt-dlp-real --cookies /tmp/youtube-cookies.txt --extractor-args "youtube:player_client=mweb" --extractor-args "youtubepot-bgutilscript:server_home=/opt/bgutil/server" "$@"' \
+      '  exec /usr/local/bin/yt-dlp-real --cookies /tmp/youtube-cookies.txt --extractor-args "youtube:player_client=default,mweb" --extractor-args "youtubepot-bgutilscript:server_home=/opt/bgutil/server" "$@"' \
       'else' \
       '  exec /usr/local/bin/yt-dlp-real --extractor-args "youtube:player_client=mweb" --extractor-args "youtubepot-bgutilscript:server_home=/opt/bgutil/server" "$@"' \
       'fi' \
